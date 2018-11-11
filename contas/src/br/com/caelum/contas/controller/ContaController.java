@@ -38,4 +38,12 @@ public class ContaController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/removeConta")
+	public String remove(Conta conta) {
+		ContaDAO contaDAO = new ContaDAO();
+		contaDAO.remove(conta);
+		
+		return "redirect:listaContas";
+	}
 }
