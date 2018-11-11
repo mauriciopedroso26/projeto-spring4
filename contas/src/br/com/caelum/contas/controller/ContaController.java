@@ -1,7 +1,10 @@
 package br.com.caelum.contas.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.caelum.contas.dao.ContaDAO;
 import br.com.caelum.contas.modelo.Conta;
@@ -22,5 +25,17 @@ public class ContaController {
 		contaDao.adiciona(conta);
 		
 		return "conta-adicionada";
+	}
+	
+	@RequestMapping("/listaContas")
+	public ModelAndView lista() {
+		
+		ContaDAO contaDAO = new ContaDAO();
+		List<Conta> contas = contaDAO.lista();
+		
+		ModelAndView mv = new ModelAndView("conta/lista");
+		mv.addObject("todasContas", contas);
+		
+		return mv;
 	}
 }
