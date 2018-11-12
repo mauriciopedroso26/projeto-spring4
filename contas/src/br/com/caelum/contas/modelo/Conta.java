@@ -2,15 +2,21 @@ package br.com.caelum.contas.modelo;
 
 import java.util.Calendar;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Conta {
 	
 	private Long id;
 
+	@NotNull
+	@Size(min=5, message="{conta.formulario.descricao.tamanho}")
 	private String descricao;
 
 	private boolean paga;
 	
-	private double valor;
+	@NotNull(message="{conta.formulario.valor.tamanho}")
+	private Double valor;
 
 	private Calendar dataPagamento;
 	
@@ -56,12 +62,14 @@ public class Conta {
 		this.tipo = tipo;
 	}
 
-	public double getValor() {
+	public Double getValor() {
 		return valor;
-	}	
-	
-	public void setValor(double valor) {
+	}
+
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
+
+	
 
 }

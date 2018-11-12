@@ -2,7 +2,10 @@ package br.com.caelum.contas.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,7 +21,11 @@ public class ContaController {
 	}
 	
 	@RequestMapping("/adicionaConta")
-	public String diciona(Conta conta) {
+	public String diciona(@Valid Conta conta, BindingResult result) {
+		
+		if(result.hasErrors()){
+			return "formulario";
+		}
 		
 		System.out.println("Conta adicionada é " + conta.getDescricao());
 		ContaDAO contaDao = new ContaDAO();
